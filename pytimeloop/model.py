@@ -4,6 +4,7 @@ from .config import Config
 
 import logging
 
+USE_ACCELERGY = True
 
 class ArchSpecs(bindings.model.ArchSpecs):
     def __init__(self, config: Config, is_sparse_topology: bool = False):
@@ -25,7 +26,7 @@ class ArchSpecs(bindings.model.ArchSpecs):
                 logger.info(
                     'Found Accelergy ART, replacing internal area model')
                 self.parse_accelergy_art(root_node['ART'])
-        else:
+        elif USE_ACCELERGY:
             _, native_arch_cfg = config['architecture'].get_native()
             if 'subtree' in native_arch_cfg or 'local' in native_arch_cfg:
                 with open('tmp-accelergy.yaml', 'w+') as f:
