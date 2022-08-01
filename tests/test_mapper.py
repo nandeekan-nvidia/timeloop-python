@@ -17,6 +17,7 @@ class MapperAppTest(unittest.TestCase):
         eval_result, mapping = mapper.run()
 
         self.assertEqual(eval_result.cycles, 1536)
+        self.assertEqual(mapping.print_compact(), "L2[WIO] P1 - L1[I] K16 P16 - L0[WIO] R3 K2 ")
 
     def test_conv1d_3level(self):
         self.check_mapper_app(

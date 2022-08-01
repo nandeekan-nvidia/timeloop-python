@@ -4,7 +4,7 @@ from .config import Config
 
 import logging
 
-USE_ACCELERGY = True
+USE_ACCELERGY = False
 
 class ArchSpecs(bindings.model.ArchSpecs):
     def __init__(self, config: Config, is_sparse_topology: bool = False):

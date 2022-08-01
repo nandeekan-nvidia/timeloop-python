@@ -39,6 +39,8 @@ void BindMappingClasses(py::module& m) {
       .def_static("parse_and_construct", &mapping::ParseAndConstruct)
       .def("datatype_bypass_nest",
            [](Mapping& m) { return m.datatype_bypass_nest; })
+      .def("print_compact",
+           [](Mapping& m) { return m.PrintCompact(); })
       .def(
           "pretty_print",
           [](Mapping& m, const std::vector<std::string>& storage_level_names,
