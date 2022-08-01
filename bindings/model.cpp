@@ -103,7 +103,8 @@ void BindEvaluationResult(py::module& m) {
                     &EvaluationResult::algorithmic_computes)
       .def_readonly("actual_computes", &EvaluationResult::actual_computes)
       .def_readonly("last_level_accesses",
-                    &EvaluationResult::last_level_accesses);
+                    &EvaluationResult::last_level_accesses)
+      .def_readonly("per_tensor_accesses", &EvaluationResult::per_tensor_accesses);
 }
 
 void BindLevel(py::module& m) {

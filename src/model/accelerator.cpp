@@ -37,7 +37,8 @@ EvaluationResult Accelerator::Evaluate(
                             engine_.Cycles(),
                             topology.AlgorithmicComputes(),
                             topology.ActualComputes(),
-                            topology.LastLevelAccesses()};
+                            topology.LastLevelAccesses(),
+                            topology.GetStats().per_tensor_accesses};
   } else {
     return EvaluationResult::FailedEvaluation(pre_eval_status);
   }

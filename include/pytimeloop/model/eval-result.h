@@ -20,6 +20,8 @@ struct EvaluationResult {
   uint64_t algorithmic_computes;
   uint64_t actual_computes;
   uint64_t last_level_accesses;
+  std::vector<std::vector<uint64_t>> per_tensor_accesses;
+
 
  public:
   static EvaluationResult FailedEvaluation(
@@ -33,7 +35,8 @@ struct EvaluationResult {
                             .cycles = 0,
                             .algorithmic_computes = 0,
                             .actual_computes = 0,
-                            .last_level_accesses = 0};
+                            .last_level_accesses = 0,
+                            .per_tensor_accesses = std::vector<std::vector<uint64_t>>()};
   }
 };
 
