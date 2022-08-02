@@ -17,10 +17,14 @@ class MapperAppTest(unittest.TestCase):
         eval_result, mapping = mapper.run()
 
         self.assertEqual(eval_result.cycles, 1536)
-        self.assertEqual(mapping.print_compact(), "L2[WIO] P1 - L1[I] K16 P16 - L0[WIO] R3 K2 ")
         self.assertEqual(eval_result.per_tensor_accesses, [[1632, 1824, 3072], [0, 306, 0], [96, 18, 512]])
         energy = 45588.5
         self.assertTrue(energy * 0.9 <= eval_result.energy <= energy * 1.1)
+
+        self.assertEqual(mapping.print_compact(), "L2[WIO] P1 - L1[I] K16 P16 - L0[WIO] R3 K2 ")
+        with open(TEST_TMP_DIR / ".." / "constraints.yaml", "r") as f:
+            yaml = f.read()
+        self.assertEqual(mapping.print_yaml(["MainMemory", "GlobalBuffer", "RegisterFile"]), yaml)
 
     def test_conv1d_3level(self):
         self.check_mapper_app(

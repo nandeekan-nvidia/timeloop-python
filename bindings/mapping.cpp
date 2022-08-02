@@ -41,6 +41,10 @@ void BindMappingClasses(py::module& m) {
            [](Mapping& m) { return m.datatype_bypass_nest; })
       .def("print_compact",
            [](Mapping& m) { return m.PrintCompact(); })
+      .def("print_yaml",
+           [](Mapping& m, const std::vector<std::string>& storage_level_names) {
+             return m.PrintYAML(storage_level_names);
+           })
       .def(
           "pretty_print",
           [](Mapping& m, const std::vector<std::string>& storage_level_names,
