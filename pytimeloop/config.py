@@ -144,6 +144,12 @@ class ConfigDict(Config):
     def dump_yaml(self):
         return yaml.safe_dump(dict(self.dict))
 
+    def keys(self):
+        return self.dict.keys()
+
+    def items(self):
+        return self.dict.items()
+
     def __setitem__(self, key, value):
         self.dict[key] = value
 
@@ -208,6 +214,12 @@ class ConfigList(Config):
         self.native_config_node = None
         self.get_native()
 
+    def append(self, value):
+        self.lis.append(value)
+
+    def pop(self, index):
+        return self.lis.pop(index)
+
     def dump_yaml(self):
         return yaml.safe_dump(list(self.lis))
 
@@ -229,12 +241,18 @@ class ConfigList(Config):
     def __contains__(self, item):
         return item in self.lis
 
+    def __len__(self):
+        return len(self.lis)
+
     def __str__(self):
         return str(self.lis)
 
     def __repr__(self):
         return ('ConfigList(l=%s, root=%s, root_key=%s'
                 % (self.lis, self.root, self.root_key))
+
+    def __reversed__(self):
+        return reversed(self.lis)
 
     def __sizeof__(self):
         return len(self.lis)

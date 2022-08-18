@@ -30,6 +30,7 @@ class SearchTask:
 class MapperApp:
     def __init__(self, cfg: Config, out_dir: str, auto_bypass_on_failure=False,
                  out_prefix='', log_level=logging.INFO):
+
         # Setup logger
         self.log_level = log_level
         self.logger = logging.getLogger('pytimeloop.app.Mapper')
@@ -156,6 +157,7 @@ class MapperApp:
             sparse_opt_cfg = Config()
         self.sparse_optimizations = SparseOptimizationInfo(
             sparse_opt_cfg, self.arch_specs)
+
 
         # TODO: characterize workload on whether it has metadata
 
